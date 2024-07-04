@@ -1,0 +1,499 @@
+java,javascript
+html,css
+python
+
+
+ReactJS
+--------------
+
+ReactJS is an open source front end javascript library for building user interfaces.
+
+It is used to build Single Page Applications.
+
+It is designed by Facebook.
+===========================================
+MVC
+WebAPI  + ReactJS / Angular
+
+A ReactJS application is made up of multiple components.
+
+Each and every component is responsible for displaying output.
+
+Components are the heart of React application.
+
+Components are like javascript functions which helps the code easily by splitting the logic .
+Components can be as function components and class components.
+
+A Component  consists of props, state which makes easy.
+
+
+why ReactJS?
+
+ReactJS uses  virtual DOM(javascript object) to fill the data in html dom.
+The virtual DOM works fast as it only changes individual DOM elements instead of reloding the complete DOM everytime.
+
+
+Features of ReactJS
+----------------------------------
+JSX - JSX is an extension to javascript.
+
+Components
+
+Javascript expressions - It can be used in jsx files using curly braces { }
+
+
+Advantages
+--------------------
+Virtual DOM
+we can create components of our choice.
+
+
+Disadvantages
+------------------------
+Most of the code  is written is jsx files .
+The file size is large.
+
+
+Softwares
+---------------
+Visual Studio Code
+node.js and npm
+
+
+First we should install ReactJS
+
+npm install -g create-react-app
+
+
+
+To create a new project
+create-react-app projectname
+
+
+
+Basic structure of ReactJS
+-----------------------------------------
+
+import React from 'react';
+
+
+class Test extends Component
+{
+render(){
+return(
+<h1>Welcome to ReactJS</h1>
+);
+}
+}
+
+export default Test;
+
+save the file as filename.js or filename.jsx
+eg: first.js or first.jsx
+
+go to index.js
+
+<Test/>
+
+-------------------
+import React from 'react';
+
+function FunctionTest()
+{
+return(
+<h1>Function component</h1>
+);
+}
+
+export default FunctionTest;
+
+save file as filename.js
+eg: funtest.js
+
+go to index.js
+<FuntionTest />
+
+--------------------------------------
+
+basic example
+style
+
+stateful & stateless components
+props
+
+
+===================
+
+
+props
+
+
+
+Syed Ali  to  Everyone 0:23
+import React, { Component } from "react";
+class Objects extends Component{
+    render(){
+        return(
+            <div>
+                {/* <h1>{this.props.cats.age}</h1>
+                <h1>{this.props.cats.gender}</h1> */}
+                <h1>{this.props.cats.breed}</h1>
+            </div>
+        )
+    }
+}
+
+class Obj2 extends Component{
+    render(){
+        var breed;
+        return(
+            <div>
+               <Objects cats = {breed="siberian"}></Objects>
+            </div>
+        )
+    }
+}
+export default Obj2;
+
+----------------
+==================================
+
+
+props
+state
+props validation
+========================
+
+React Forms
+
+=====================
+
+import React, { Component } from "react";
+class Forms8 extends Component{
+    constructor(props){
+        super(props)
+
+        this.state = {fname: "", age: ""}
+
+        this.func1 = this.func1.bind(this)
+        this.func2 = this.func2.bind(this)
+    }
+    func1 = (event) => {
+        var n1 = event.target.name;
+        var a1 = event.target.value;
+
+        this.setState({[n1]: a1})
+    }
+    func2 = (event) => {
+        event.preventDefault()
+
+        let localAge = this.state.age
+        if(!Number(localAge))
+        {
+            alert("Age must be a number")
+        }
+        else
+        {
+            alert(this.state.fname + " " + this.state.age)
+        }
+    }
+render(){
+        return(
+            <form onSubmit = {this.func2}>
+                <h1>F8 {this.state.fname}{this.state.age}</h1>
+                <p>Enter name</p>
+                <input type = "text" name = "h1" onChange={this.func1}></input>
+                <p>Enter age</p>
+                <input type = "text" name = "hi" onChange = {this.func1}></input>
+                <button type = "submit">Submit</button>
+            </form>
+        )
+    }
+}
+export default Forms8;
+
+--------
+
+===================================================
+
+more examples on Forms age validation
+==================
+
+
+more examples on Forms age validation
+==================
+
+events
+
+component life cycle
+
+====================
+
+
+React CSS
+
+Routing working
+
+==================
+
+Routing done
+
+fragments
+
+===============================
+
+REST API
+-----------------
+REST - Representational State Transfer
+
+API - Application Programming Interface.
+
+It is an API which follows what is structured in accordance with REST structure for API's.
+
+
+API consists of data which is in JSON format.
+
+JSON - Javascript Object Notation.
+
+
+we should consume REST API's in React application.
+
+use fetch method.
+
+Benefits
+------------
+It is very easy to learn and understand.
+A REST API is not a language or platform-specific but it can be consumed with any language or run on any platform.
+
+
+
+https://jsonplaceholder.typicode.com/users
+
+In this API information is present in JSON format.
+
+
+create a state
+-----------------------
+A state is an object which holds data pending to be rendered.
+Here we will store output from API call.
+
+state={varx : [] }
+
+
+calling API
+-----------------
+To fetch the details list we will use componentDidMount() in our application.
+
+This method is executed immediately and our component is mounted and we can make our API request in that method.
+
+
+componendDidMount()
+{
+fetch("https://jsonplaceholder.typicode.com/users") --get
+.then(res=>res.json()) --parses output to json
+.then((data)=>{
+this.setState({
+varx: data   
+});  -- it sets the value of our state to output from API call.
+}
+.catch(console.log)
+}
+
+
+---------------------------------
+
+
+contacts.js
+-----------------
+import React from 'react';
+const Contacts=({contacts})=>
+{
+return(
+<div>
+<h1>Contacts List</h1>
+{
+contacts.map((contact)=>
+<div>
+<h2>{contact.name}</h2>
+<h3>{contact.email}</h3>
+<h4>{contact.phone}</h4>
+<h5>{contact.address.city}</h5>
+<h6>{contact.company.catchPhrase}</h6>
+</div>
+)}
+</div>
+);
+}
+
+export default Contacts;
+
+
+---------
+APIDemo.js
+----------------
+import React from 'react';
+import Contacts from './contacts';
+
+class APIDemo extends React.Component
+{
+state={
+contacts:[]
+}
+
+componentDidMount()
+{
+fetch("http://jsonplaceholder.typicode.com/users")
+.then(res=>res.json())
+.then((data)=>{
+this.setState({contacts:data})
+})
+.catch(console.log)
+}
+render()
+{
+return(
+<div>
+<Contacts contacts={this.state.contacts}/>
+</div>
+);
+}
+}
+
+export default APIDemo;
+
+
+-----------------------------------
+
+=================================================
+Lists
+--------
+Lists are useful to improve or create the UI of any website.
+Keys
+-------
+keys are unique
+
+--------
+React Refs
+------------------
+
+reference - Ref
+Ref is the short form of References in React.
+It is an attribute which makes it possible to store a reference to a particular DOM nodes or react elements and how to interact with it.
+
+
+To create Refs
+-----------------------
+we can ref by using React.createRef();
+
+
+class Test extends Component
+{
+constructor(props)
+{
+super(props);
+this.callRef=React.createRef();
+}
+render()
+{
+return <div ref={this.callRef}/>
+}
+
+}
+
+
+To Access Refs
+--------------------------
+When a ref is passed to an element inside render method , a reference to the node can be accessed by using current attribute or ref.
+
+const varx=this.callRef.current
+
+
+
+===================================
+
+
+React Hooks
+--------------------
+Hooks is the new feature introduced in 16.8 version.
+
+
+Hooks allows us to use state and other features without writing the class.
+
+Rules
+---------
+Only one hooks at the top level.
+----------------------------------------------
+We should not call hooks inside loops, conditions, nested functions.
+
+Only call hooks from react functions
+--------------------------------------------------
+we cannot call hooks from regular javascript functions.
+we can call hooks from React function components.
+
+
+
+useState()
+It allows the functional components to manage the state.
+
+
+useEffect()
+It allows us to perform side effects in our components like fetching data when the component mounts or updates.
+
+
+===========================================================
+import React, { useEffect, useState } from "react";
+
+function Hooks2(){
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+
+    }, [])
+    const fetchData = async() => {
+        const response = await fetch("http://jsonplaceholder.typicode.com/users");
+        const result = await response.json()
+        setData(result)
+    }
+
+    return(
+        <div>
+            {data.map(item =>(
+                <div key = {item.id}>
+                    (
+                        {item.name}
+                    )
+                </div>
+            ))}
+        </div>
+    )
+
+}
+
+export default Hooks2;
+
+------------
+ReactJS CRUD 
+empListing.js
+==============
+Emplisting
+EmpCreate
+===============
+
+crud working
+=======================
+crud edit working
+issues to be rectified on remove and detail
+only create and list is working
+
+=====================
+
+
+Recap of ReactJS
+===============================
+
+
+
+
+
+
+            
